@@ -1,0 +1,19 @@
+{
+  "name": "homework-maker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielsegalla/homework-maker.git"
+  },
+  "author": "Gabriel Rodrigues Segalla",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabrielsegalla/homework-maker/issues"
+  },
+  "homepage": "https://github.com/gabrielsegalla/homework-maker#readme"
+}
