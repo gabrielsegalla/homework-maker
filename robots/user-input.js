@@ -5,9 +5,14 @@ function robot() {
     const content = {
         maximumSentences: 15
     }
+    content.authorName = askAndReturnAuthorName()
     content.searchTerm = askAndReturnSearchTerm()
     content.prefix = askAndReturnPrefix()
     state.save(content)
+
+    function askAndReturnAuthorName() {
+        return readLine.question('What is Author name: ')
+    }
     
     function askAndReturnSearchTerm() {
         return readLine.question('Type a Wikipedia search term: ')
