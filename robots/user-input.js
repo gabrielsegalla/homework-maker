@@ -3,7 +3,7 @@ const state = require('./state.js')
 
 function robot() {
     const content = {
-        maximumSentences: 15
+        maximumSentences: 800
     }
     content.authorName = askAndReturnAuthorName()
     content.searchTerm = askAndReturnSearchTerm()

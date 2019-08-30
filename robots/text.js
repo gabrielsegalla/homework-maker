@@ -80,7 +80,8 @@ async function robot() {
     }
 
     async function fetchKeywordsOfAllSentences(content){
-        for (const sentence of content.sentences) {
+        for(sentenceIndex = 0; sentenceIndex <= 10; sentenceIndex++ ){
+            const sentence = content.sentences[sentenceIndex]
             sentence.keywords = await fetchWatsonAndReturnKeywords(sentence.text)
         }
     }

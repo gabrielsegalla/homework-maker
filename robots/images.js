@@ -1,4 +1,5 @@
 const state = require('./state.js')
+const gm = require('gm').subClass({imageMagick: true})
 const google = require('googleapis').google
 const customSearch = google.customsearch('v1')
 const imageDownloader = require('image-downloader')
@@ -6,17 +7,33 @@ const googleSearchCredentials = require('../credentials/google.json')
 async function robot() {
     const content = state.load()
 
-    // await fetchImagesOfAllSentences(content)
+    await fetchImagesOfAllSentences(content)
     await downloadAllImages(content)
-    // state.save(content)
+    state.save(content)
     
-    async function fetchImagesOfAllSentences(){
-        for(const sentence of content.sentences){
-            const query =  `${content.searchTerm} ${sentence.keywords[0]}`
-            sentence.images = await fetchGoogleAndReturnImagesLinks(query)
-
-            sentence.googleSearchQuery = query
+    async function fetchImagesOfAllSentences(content){
+        // for(const sentenceIndex = 0; sentenceIndex <= 10; sentenceIndex++ ){
+        //     const query =  `${content.searchTerm} ${content.sentences[sentenceIndex].keywords[0]}`
+        //     content.sentences[sentenceIndex].images = await fetchGoogleAndReturnImagesLinks(query)
+        //     content.sentences[sentenceIndex].googleSearchQuery = query
+        // }
+      gambi = 0;   
+      for (const sentence of content.sentences) {
+            if(gambi == 10){
+              break
+            }else{
+              const query =  `${content.searchTerm} ${sentence.keywords[0]}`
+              sentence.images = await fetchGoogleAndReturnImagesLinks(query)
+              sentence.googleSearchQuery = query
+              gambi++
+            }
         }
+        // for(const sentence of content.sentences){
+          // const query =  `${content.searchTerm} ${sentence.keywords[0]}`
+          // sentence.images = await fetchGoogleAndReturnImagesLinks(query)
+
+          // sentence.googleSearchQuery = query
+        // }
 
     }
 
@@ -26,8 +43,8 @@ async function robot() {
             cx: googleSearchCredentials.searchEngineKey,
             q: query,
             searchType: 'image',
-            imgSize: 'huge',
-            num: 2
+            // imgSize: 'huge',
+            num: 3
         })
         const imagesUrl = response.data.items.map((item)=> {
             return item.link
@@ -62,10 +79,7 @@ async function robot() {
             url, url,
             dest:`./content/${fileName}`
         })
-    }
-
-    
-
+    } 
     
 }
 
