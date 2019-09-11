@@ -25,16 +25,20 @@ async function robot() {
     }
 
     async function createDocumentPage(content, doc){
-        doc.addPage()
-        doc.fontSize(12);
-        x = 100
+        doc.addPage({
+            margin: 70
+        })
+        .fontSize(16).text(content.searchTerm,255).moveDown()
+        resume = ""
         for(const sentence of content.sentences){
-            doc.text(sentence.text, 50, x,{
-                align: 'justify'
-               })
-            x = x + 30
-          }
-        doc.end();
+            resume += sentence.text
+            console.log("> Criando Resumo")
+        }
+        doc.fontSize(12)
+        .text(resume, {
+            align: 'justify'
+        })
+        .end();
     }
 }
 

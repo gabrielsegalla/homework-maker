@@ -76,7 +76,11 @@ async function robot() {
     }
 
     function limitMaximumSentences(content){
-        content.sentences = content.sentences.slice(0, content.maximumSentences)
+      // while(content.sentences[content.maximumSentences] == "."){
+      //   content.maximumSentences +=1
+      //   console.log("Buscando o .")
+      // }
+      content.sentences = content.sentences.slice(0, content.maximumSentences)
     }
 
     async function fetchKeywordsOfAllSentences(content){
